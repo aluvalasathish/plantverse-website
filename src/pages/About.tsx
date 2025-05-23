@@ -1,8 +1,15 @@
+import { useEffect } from 'react';
 import { FiHeart, FiUsers, FiPackage, FiGlobe, FiMap } from 'react-icons/fi';
+import { scrollToTop } from '../utils/scrollUtils';
 
 const About = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
   return (
-    <main className="py-28 md:py-32">
+    <main className="py-28 md:py-32 overflow-y-auto">
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="mb-16 max-w-3xl mx-auto text-center">

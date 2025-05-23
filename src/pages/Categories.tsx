@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getAllProducts } from '../services/productService';
 import ProductDetail from '../components/ProductDetail';
 import { useCart } from '../context/CartContext';
 import { FiShoppingCart } from 'react-icons/fi';
+import { scrollToTop } from '../utils/scrollUtils';
 
 // Define the categories
 const categories = [
@@ -62,6 +63,18 @@ const Categories = () => {
   const allProducts = getAllProducts();
   const { addToCart } = useCart();
   
+  // Scroll to top when component mounts
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+  
+  // Scroll to top when a category is selected
+  useEffect(() => {
+    if (selectedCategory !== null) {
+      scrollToTop();
+    }
+  }, [selectedCategory]);
+  
   // Filter products by selected category
   const filteredProducts = selectedCategory 
     ? allProducts.filter(product => product.category.includes(selectedCategory))
@@ -82,7 +95,7 @@ const Categories = () => {
   };
   
   return (
-    <main className="py-28 md:py-32">
+    <main className="py-28 md:py-32 overflow-y-auto">
       <div className="container mx-auto px-4">
         <div className="mb-10">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">Plant Categories</h1>

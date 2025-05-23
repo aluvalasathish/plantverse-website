@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getAllProducts } from '../services/productService';
 import ProductDetail from '../components/ProductDetail';
 import { useCart } from '../context/CartContext';
 import { FiShoppingCart, FiFilter, FiGrid, FiList, FiChevronDown } from 'react-icons/fi';
+import { scrollToTop } from '../utils/scrollUtils';
 
 const Products = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
@@ -11,6 +12,11 @@ const Products = () => {
   const [sortOption, setSortOption] = useState('featured');
   const products = getAllProducts();
   const { addToCart } = useCart();
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   const handleProductClick = (product: any) => {
     setSelectedProduct(product);
@@ -27,7 +33,7 @@ const Products = () => {
   };
 
   return (
-    <main className="py-28 md:py-32">
+    <main className="py-28 md:py-32 overflow-y-auto">
       <div className="container mx-auto px-4">
         <div className="mb-10">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">All Plants</h1>

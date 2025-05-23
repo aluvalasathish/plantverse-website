@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FiMail, FiPhone, FiMapPin, FiClock, FiSend, FiCheck } from 'react-icons/fi';
+import { scrollToTop } from '../utils/scrollUtils';
 
 const Contact = () => {
   const [formState, setFormState] = useState({
@@ -11,6 +12,11 @@ const Contact = () => {
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  
+  // Scroll to top when component mounts
+  useEffect(() => {
+    scrollToTop();
+  }, []);
   
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -43,7 +49,7 @@ const Contact = () => {
   };
   
   return (
-    <main className="py-28 md:py-32">
+    <main className="py-28 md:py-32 overflow-y-auto">
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <div className="mb-16 max-w-3xl mx-auto text-center">
