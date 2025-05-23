@@ -1,0 +1,21 @@
+{
+  "name": "PlantVerse",
+  "short_name": "PlantVerse",
+  "description": "Premium plants for your space",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#22C55E",
+  "icons": [
+    {
+      "src": "/flower4.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/flower4.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+} 
